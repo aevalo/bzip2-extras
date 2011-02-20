@@ -30,12 +30,14 @@ set(BZIP2_SOURCES bzip2.c)
 set(BZIP2RECOVER_SOURCES bzip2recover.c)
 
 # If compiling in Windows, using Microsoft Visual C, define these to suppress warnings
+if(MSVC)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS)
+endif(MSVC)
+
+# Under Cygwin, these definitions must be set.
 if(CYGWIN)
     if(WIN32)
         add_definitions(-DBZ_UNIX=0 -DBZ_LCCWIN32=1)
-        if(MSVC)
-            add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS)
-        endif(MSVC)
     elseif(UNIX)
         add_definitions(-DBZ_UNIX=1 -DBZ_LCCWIN32=0)
     endif(WIN32)
