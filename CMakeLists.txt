@@ -51,3 +51,4 @@ install(TARGETS bz2 bzip2 bzip2recover
             LIBRARY DESTINATION lib
             ARCHIVE DESTINATION lib/static)
 install(FILES ${BZIP2_PUBLIC_HEADERS} DESTINATION include/bzip2)
+
