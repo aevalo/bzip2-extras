@@ -30,9 +30,16 @@ set(BZIP2_SOURCES bzip2.c)
 set(BZIP2RECOVER_SOURCES bzip2recover.c)
 
 # If compiling in Windows, using Microsoft Visual C, define these to suppress warnings
-if(WIN32 AND MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS)
-endif(WIN32 AND MSVC)
+if(CYGWIN)
+    if(WIN32)
+        add_definitions(-DBZ_UNIX=0 -DBZ_LCCWIN32=1)
+        if(MSVC)
+            add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS)
+        endif(MSVC)
+    elseif(UNIX)
+        add_definitions(-DBZ_UNIX=1 -DBZ_LCCWIN32=0)
+    endif(WIN32)
+endif(CYGWIN)
 
 # Add bz2 library
 add_library(bz2 ${LIBBZ2_SOURCES})
