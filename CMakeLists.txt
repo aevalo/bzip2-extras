@@ -1,3 +1,7 @@
+# This CMakeLists.txt has been tested with bzip2 version 1.0.6
+# using Microsoft Visual Studio 2008 Express under Windows Vista
+# and cmake 2.8
+
 cmake_minimum_required(VERSION 2.6)
 
 # Set build type to Debug by default
